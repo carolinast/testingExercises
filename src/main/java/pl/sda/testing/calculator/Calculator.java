@@ -64,7 +64,7 @@ public class Calculator {
         return add(x, y);
     }
 
-    public int multipleEven(int x, int y) {
+    public int multiplyEven(int x, int y) {
         if (x % 2 != 0 || y % 2 != 0)
             throw new IllegalArgumentException("Argumenty muszą być liczbami parzystymi");
         return multiply(x, y);
