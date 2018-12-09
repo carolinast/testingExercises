@@ -1,8 +1,12 @@
 package pl.sda.testing.calculator;
 
+import junitparams.FileParameters;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.assertj.core.api.Assertions;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,9 +16,10 @@ import static junit.framework.TestCase.assertEquals;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.assertFalse;
 
+@RunWith(JUnitParamsRunner.class)
 public class CalculatorTest {
 
-    private Calculator calculator;
+    private Calculator calculator = new Calculator();
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -178,7 +183,7 @@ public class CalculatorTest {
 
     }
 
-    @Test
+    @Test@Ignore
     public void testExceptionFromFactorialMethodNumberLimitExceeded() {
         assertThatExceptionOfType(Calculator.NumberLimitExceeded.class).isThrownBy(() -> {
             calculator.factorial(30);
@@ -186,5 +191,20 @@ public class CalculatorTest {
         })
                 .withMessage("Maksymalna dozwolona liczba to: ");
     }
+//    @Test
+//    @Parameters({"2, 2, 4", "3, 3, 27"})
+//    public void testPow(int x, int y, int expected){
+//
+//        int result = calculator.pow(x,y);
+//
+//        Assertions.assertThat(result).isEqualTo(expected);
+//    }
 
+    @Test
+    @FileParameters("scr/test/resources.csv")
+    public void testPow(int o, int p, int expected){
+        int result = calculator.pow(o, p);
+
+        Assertions.assertThat(result).isEqualTo(expected);
+    }
 }

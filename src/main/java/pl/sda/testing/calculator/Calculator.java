@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
+
     private static final int MAX = 10;
     private List<String> calculations = new ArrayList<String>();
 
@@ -100,4 +101,5 @@ public class Calculator {
             super(message);
         }
     }
+
 }
